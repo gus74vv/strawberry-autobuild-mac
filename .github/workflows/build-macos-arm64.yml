@@ -1,11 +1,7 @@
-name: Build Strawberry macOS ARM64
+name: Build Strawberry macOS ARM64 DMG
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  workflow_dispatch:
+  workflow_dispatch:   # ejecución manual, sin schedule
 
 jobs:
   build-macos-arm64:
@@ -22,18 +18,31 @@ jobs:
           brew update
           brew install cmake ninja qt@6 pkg-config
 
-      - name: Configurar CMake (ARM64)
+      # Copiamos el script macdeploycheck desde el repo original
+      - name: Descargar macdeploycheck
+        run: |
+          curl -L https://raw.githubusercontent.com/Leohige/strawberry-autobuild-mac/main/macdeploycheck \
+            -o /usr/local/bin/macdeploycheck
+          chmod +x /usr/local/bin/macdeploycheck
+
+      - name: Configurar CMake (ARM64 con DMG)
         run: |
           cmake -S src -B build -G Ninja \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_OSX_ARCHITECTURES=arm64 \
-            -DCMAKE_PREFIX_PATH="$(brew --prefix qt@6)/lib/cmake"
+            -DCMAKE_PREFIX_PATH="$(brew --prefix qt@6)/lib/cmake" \
+            -DENABLE_DMG=ON
 
       - name: Compilar
         run: cmake --build build --config Release
 
-      - name: Subir artefacto
+      - name: Crear DMG
+        run: |
+          cd build
+          make dmg
+
+      - name: Subir artefacto DMG
         uses: actions/upload-artifact@v4
         with:
-          name: strawberry-macos-arm64
-          path: build/bin/strawberry
+          name: strawberry-macos-arm64-dmg
+          path: build/*.dmg
