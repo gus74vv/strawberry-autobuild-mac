@@ -1,6 +1,6 @@
 ﻿# strawberry-autobuild-mac
 
-![Build](https://github.com/Leohige/strawberry-autobuild-mac/workflows/Build/badge.svg)
+
 
 This repository provides unofficial macOS builds of Strawberry Music Player.
 
@@ -52,4 +52,5 @@ Thank you for using this unofficial build of Strawberry Music Player. If you enj
 - [GitHub Sponsors](https://github.com/sponsors/jonaski)
 - [Ko-fi](https://ko-fi.com/jonaskvinge) - Official builds may also be available to supporters here; please see their page for details.
 - [PayPal](https://paypal.me/jonaskvinge)
+
 
