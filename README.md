@@ -4,7 +4,7 @@
 
 This repository provides unofficial macOS builds of Strawberry Music Player.
 
-**Downloads:** You can download the latest unofficial builds from the [Releases]([https://github.com/Leohige/strawberry-autobuild-mac/releases](https://github.com/gus74vv/strawberry-autobuild-mac/releases)) page.
+**Downloads:** You can download the latest unofficial builds from the [Releases](https://github.com/gus74vv/strawberry-autobuild-mac/releases) page.
 
 > **Looking for Windows builds?** Check out [@stm7128/strawberry-autobuild-windows](https://github.com/stm7128/strawberry-autobuild-windows) for unofficial Windows builds.
 
@@ -52,6 +52,7 @@ Thank you for using this unofficial build of Strawberry Music Player. If you enj
 - [GitHub Sponsors](https://github.com/sponsors/jonaski)
 - [Ko-fi](https://ko-fi.com/jonaskvinge) - Official builds may also be available to supporters here; please see their page for details.
 - [PayPal](https://paypal.me/jonaskvinge)
+
 
 
 
