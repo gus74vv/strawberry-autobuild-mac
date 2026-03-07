@@ -11,8 +11,11 @@ jobs:
   build-macos-arm64:
     runs-on: macos-latest
     steps:
-      - name: Checkout
+      - name: Checkout autobuild repo
         uses: actions/checkout@v4
+
+      - name: Descargar Strawberry
+        run: git clone https://github.com/strawberrymusicplayer/strawberry.git src
 
       - name: Instalar dependencias
         run: |
@@ -21,10 +24,10 @@ jobs:
 
       - name: Configurar CMake (ARM64)
         run: |
-          cmake -B build -G Ninja \
+          cmake -S src -B build -G Ninja \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_OSX_ARCHITECTURES=arm64 \
-            -DCMAKE_PREFIX_PATH="$(brew --prefix qt@6)"
+            -DCMAKE_PREFIX_PATH="$(brew --prefix qt@6)/lib/cmake"
 
       - name: Compilar
         run: cmake --build build --config Release
