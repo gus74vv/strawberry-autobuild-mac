@@ -180,7 +180,6 @@ jobs:
             --notes "Automated macOS builds
           
           **Builds:**
-          - Intel (x86_64)
           - Apple Silicon (arm64)
           
           **Note:** Unsigned builds for testing." \
