@@ -191,14 +191,23 @@ jobs:
         run: |
           # Keep only the 2 most recent releases
           KEEP_COUNT=2
-          RELEASES=($(gh release list --limit 100 --json name --jq '.[].name' | grep '^daily-build-' | sort -r))
+          RELEASES=($(gh release list --limit 100 | grep '^daily-build-' | awk '{print $1}' | sort -r))
+          
+          TOTAL=${#RELEASES[@]}
+          echo "Found $TOTAL releases"
+          
+          DELETE_COUNT=$(( TOTAL - KEEP_COUNT ))
+          if (( DELETE_COUNT > 0 )); then
+            echo "Deleting $DELETE_COUNT old release(s)"
+          else
+            echo "Nothing to delete (only $TOTAL releases)"
+          fi
           
           for i in "${!RELEASES[@]}"; do
             if (( i >= KEEP_COUNT )); then
               tag="${RELEASES[$i]}"
               echo "Deleting old release: ${tag}"
-              gh release delete "${tag}" --yes --cleanup-tag
-              git push --delete origin "${tag}" 2>/dev/null || true
+              gh release delete "${tag}" --yes --cleanup-tag 2>/dev/null || true
             fi
           done
     
