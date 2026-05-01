@@ -16,7 +16,6 @@ This repository provides the following types of macOS builds. Builds are automat
 
 | macOS Version | Architecture | Build Type | Notes |
 |---------------|--------------|------------|-------|
-
 | macOS 15 (Sequoia) | arm64 (Apple Silicon) | Release | Recommended for Apple Silicon Macs (M1/M2/M3) |
 
 ## Important Notes
@@ -26,7 +25,7 @@ This repository provides the following types of macOS builds. Builds are automat
   2. Run `xattr -cr /path/to/strawberry.dmg` in Terminal before opening
   3. After mounting, if the app is still blocked, run `xattr -cr /Applications/Strawberry.app`
 
-- **Retention Policy:** Only the last 30 days of builds are kept to manage storage. Older releases are automatically deleted.
+- **Retention Policy:** Only the 2 most recent builds are kept to manage storage. Older releases are automatically deleted.
 
 ## Issues and Support
 
